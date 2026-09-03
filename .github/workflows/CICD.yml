@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout code
-        run: echo "Code Clone from GitHub
+        run: echo "Code Clone from GitHub"
   build:
      runs-on: ubuntu-latest
     steps:
