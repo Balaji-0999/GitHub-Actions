@@ -22,7 +22,7 @@ jobs:
             # get access to your portfolio code via pre-build actions
             # clone or check out the code where this workflow is written
             - name: Checkout code
-              uses: action/checkout@v4
+              uses: actions/checkout@v4
 
               # setup Githup pages 
             - name: setup the GitHub page
@@ -33,3 +33,7 @@ jobs:
               uses: actions/upload-pages-artifacts@v4
               with:
                   path: "."
+              # Actually deploy the artifact to GitHub Pages
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@v4
