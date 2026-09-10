@@ -1,89 +1,954 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevOps Zero To Hero</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            color: #e0e0e0;
-        }
-        .container {
-            text-align: center;
-            padding: 2rem;
-            max-width: 640px;
-        }
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(90deg, #00d2ff, #7b2ff7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .badge {
-            display: inline-block;
-            margin: 1rem 0 2rem;
-            padding: 0.4rem 1.2rem;
-            border: 1px solid #7b2ff7;
-            border-radius: 999px;
-            font-size: 0.9rem;
-            color: #c4b5fd;
-            letter-spacing: 0.05em;
-        }
-        .cards {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        .card {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 1.5rem 1.8rem;
-            min-width: 150px;
-            flex: 1;
-        }
-        .card span {
-            display: block;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: #9ca3af;
-            margin-bottom: 0.4rem;
-        }
-        .card strong {
-            font-size: 1.25rem;
-            color: #f9fafb;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Bala Ji | DevOps Engineer</title>
+
+  <meta
+    name="description"
+    content="Bala Ji - Aspiring DevOps Engineer | Linux | AWS | Docker | Kubernetes | CI/CD"
+  />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --bg: #050507;
+      --card: #0d0d12;
+      --card2: #111118;
+      --text: #f5f5f5;
+      --muted: #9b9ba7;
+      --purple: #9b5cff;
+      --cyan: #00e5ff;
+      --border: rgba(255,255,255,0.08);
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* NAVBAR */
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(5,5,7,0.85);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-container {
+      max-width: 1150px;
+      margin: auto;
+      padding: 18px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 23px;
+      font-weight: bold;
+    }
+
+    .logo span {
+      color: var(--cyan);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--cyan);
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 20px 70px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: var(--purple);
+      filter: blur(180px);
+      opacity: 0.15;
+      top: 10%;
+      left: 10%;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 450px;
+      height: 450px;
+      background: var(--cyan);
+      filter: blur(180px);
+      opacity: 0.10;
+      bottom: 0;
+      right: 10%;
+    }
+
+    .hero-content {
+      max-width: 850px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 18px;
+      border: 1px solid rgba(0,229,255,0.3);
+      border-radius: 50px;
+      color: var(--cyan);
+      background: rgba(0,229,255,0.05);
+      margin-bottom: 25px;
+      font-size: 14px;
+    }
+
+    .hero h1 {
+      font-size: clamp(45px, 8vw, 85px);
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+
+    .gradient {
+      background: linear-gradient(90deg, var(--purple), var(--cyan));
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero h2 {
+      font-size: clamp(20px, 4vw, 30px);
+      color: #ddd;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 650px;
+      margin: auto;
+      font-size: 17px;
+    }
+
+    .buttons {
+      margin-top: 35px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 13px 25px;
+      border-radius: 10px;
+      font-weight: bold;
+      transition: 0.3s;
+      border: 1px solid var(--border);
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, var(--purple), var(--cyan));
+      color: #000;
+    }
+
+    .btn-secondary {
+      background: var(--card);
+      color: white;
+    }
+
+    .btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(155,92,255,0.2);
+    }
+
+    /* GENERAL */
+
+    section {
+      padding: 100px 20px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title h2 {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    .section-title p {
+      color: var(--muted);
+    }
+
+    /* ABOUT */
+
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 35px;
+    }
+
+    .about-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 30px;
+    }
+
+    .about-card h3 {
+      margin-bottom: 15px;
+      color: var(--cyan);
+    }
+
+    .about-card p {
+      color: var(--muted);
+    }
+
+    /* SKILLS */
+
+    .skills {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 18px;
+    }
+
+    .skill {
+      padding: 25px;
+      text-align: center;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      transition: 0.3s;
+    }
+
+    .skill:hover {
+      transform: translateY(-7px);
+      border-color: rgba(0,229,255,0.4);
+    }
+
+    .skill-icon {
+      font-size: 35px;
+      margin-bottom: 10px;
+    }
+
+    .skill h3 {
+      font-size: 17px;
+    }
+
+    .skill p {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 5px;
+    }
+
+    /* PROJECTS */
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 22px;
+    }
+
+    .project {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 28px;
+      transition: 0.3s;
+    }
+
+    .project:hover {
+      transform: translateY(-8px);
+      border-color: rgba(155,92,255,0.5);
+    }
+
+    .project-number {
+      color: var(--cyan);
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .project h3 {
+      margin: 10px 0;
+      font-size: 22px;
+    }
+
+    .project p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      font-size: 12px;
+      padding: 5px 10px;
+      background: var(--card2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      color: #ccc;
+    }
+
+    /* JOURNEY */
+
+    .journey {
+      max-width: 750px;
+      margin: auto;
+    }
+
+    .journey-item {
+      position: relative;
+      padding: 0 0 35px 35px;
+      border-left: 1px solid rgba(155,92,255,0.4);
+    }
+
+    .journey-item:last-child {
+      border-left: none;
+    }
+
+    .journey-item::before {
+      content: "";
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--cyan);
+      left: -6px;
+      top: 5px;
+      box-shadow: 0 0 15px var(--cyan);
+    }
+
+    .journey-item h3 {
+      margin-bottom: 5px;
+    }
+
+    .journey-item span {
+      color: var(--purple);
+      font-size: 14px;
+    }
+
+    .journey-item p {
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    /* CONTACT */
+
+    .contact-box {
+      text-align: center;
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 55px 25px;
+      border-radius: 20px;
+    }
+
+    .contact-box h2 {
+      font-size: 38px;
+      margin-bottom: 15px;
+    }
+
+    .contact-box p {
+      color: var(--muted);
+      margin-bottom: 25px;
+    }
+
+    .socials {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .social {
+      padding: 12px 20px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--card2);
+      transition: 0.3s;
+    }
+
+    .social:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+      transform: translateY(-3px);
+    }
+
+    /* FOOTER */
+
+    footer {
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 25px;
+      color: var(--muted);
+    }
+
+    footer span {
+      color: var(--cyan);
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 700px) {
+      .nav-links {
+        display: none;
+      }
+
+      .about {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 52px;
+      }
+
+      section {
+        padding: 75px 18px;
+      }
+
+      .section-title h2 {
+        font-size: 32px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <div class="container">
-        <h1>DevOps Zero To Hero</h1>
-        <div class="badge">Josh Batch 10</div>
-        <div class="cards">
-            <div class="card">
-                <span>Framework</span>
-                <strong>Flask 3.1</strong>
-            </div>
-            <div class="card">
-                <span>Runtime</span>
-                <strong>Python 3.14</strong>
-            </div>
-            <div class="card">
-                <span>Deploy</span>
-                <strong>AWS ECS</strong>
-            </div>
-        </div>
+
+  <!-- NAVBAR -->
+
+  <nav>
+    <div class="nav-container">
+
+      <div class="logo">
+        Bala<span>Ji.</span>
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#journey">Journey</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
     </div>
+  </nav>
+
+
+  <!-- HERO -->
+
+  <section class="hero" id="home">
+
+    <div class="hero-content">
+
+      <div class="badge">
+        🚀 Aspiring DevOps Engineer
+      </div>
+
+      <h1>
+        Hi, I'm <span class="gradient">Bala Ji</span>
+      </h1>
+
+      <h2>
+        Cloud & DevOps Enthusiast
+      </h2>
+
+      <p>
+        I am learning and building real-world projects with
+        Linux, AWS, Docker, Kubernetes, Terraform and CI/CD.
+        My goal is to become a skilled DevOps Engineer.
+      </p>
+
+      <div class="buttons">
+
+        <a
+          href="#projects"
+          class="btn btn-primary"
+        >
+          View My Projects →
+        </a>
+
+        <a
+          href="https://github.com/Balaji-0999"
+          target="_blank"
+          class="btn btn-secondary"
+        >
+          GitHub
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ABOUT -->
+
+  <section id="about">
+
+    <div class="container">
+
+      <div class="section-title">
+        <h2>About Me</h2>
+        <p>A little about my DevOps journey</p>
+      </div>
+
+      <div class="about">
+
+        <div class="about-card">
+
+          <h3>👨‍💻 Who I Am</h3>
+
+          <p>
+            I'm Bala Ji, an aspiring DevOps Engineer passionate
+            about cloud infrastructure, automation and
+            continuous delivery.
+          </p>
+
+          <br>
+
+          <p>
+            I believe the best way to learn DevOps is by
+            building projects, breaking things, fixing them
+            and understanding how everything works in production.
+          </p>
+
+        </div>
+
+        <div class="about-card">
+
+          <h3>🎯 My Goal</h3>
+
+          <p>
+            My goal is to become a professional DevOps Engineer
+            and work with modern cloud-native technologies.
+          </p>
+
+          <br>
+
+          <p>
+            Currently focused on AWS, Linux, Docker,
+            Kubernetes, GitHub Actions, Terraform and
+            CI/CD automation.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- SKILLS -->
+
+  <section id="skills">
+
+    <div class="container">
+
+      <div class="section-title">
+
+        <h2>Tech Stack</h2>
+
+        <p>
+          Technologies I'm learning and working with
+        </p>
+
+      </div>
+
+      <div class="skills">
+
+        <div class="skill">
+          <div class="skill-icon">🐧</div>
+          <h3>Linux</h3>
+          <p>Commands & Administration</p>
+        </div>
+
+        <div class="skill">
+          <div class="skill-icon">☁️</div>
+          <h3>AWS</h3>
+          <p>EC2 • S3 • IAM • VPC</p>
+        </div>
+
+        <div class="skill">
+          <div class="skill-icon">🐳</div>
+          <h3>Docker</h3>
+          <p>Containers & Compose</p>
+        </div>
+
+        <div class="skill">
+          <div class="skill-icon">☸️</div>
+          <h3>Kubernetes</h3>
+          <p>Container Orchestration</p>
+        </div>
+
+        <div class="skill">
+          <div class="skill-icon">🔄</div>
+          <h3>GitHub Actions</h3>
+          <p>CI/CD Automation</p>
+        </div>
+
+        <div class="skill">
+          <div class="skill-icon">🏗️</div>
+          <h3>Terraform</h3>
+          <p>Infrastructure as Code</p>
+        </div>
+
+        <div class="skill">
+          <div class="skill-icon">⚙️</div>
+          <h3>Ansible</h3>
+          <p>Configuration Management</p>
+        </div>
+
+        <div class="skill">
+          <div class="skill-icon">🐍</div>
+          <h3>Python</h3>
+          <p>DevOps Automation</p>
+        </div>
+
+        <div class="skill">
+          <div class="skill-icon">🔀</div>
+          <h3>Git</h3>
+          <p>Version Control</p>
+        </div>
+
+        <div class="skill">
+          <div class="skill-icon">🚀</div>
+          <h3>Jenkins</h3>
+          <p>CI/CD Pipelines</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- PROJECTS -->
+
+  <section id="projects">
+
+    <div class="container">
+
+      <div class="section-title">
+
+        <h2>Featured Projects</h2>
+
+        <p>
+          Things I've built while learning DevOps
+        </p>
+
+      </div>
+
+      <div class="projects">
+
+        <div class="project">
+
+          <span class="project-number">01 / DEVOPS</span>
+
+          <h3>GitHub Actions CI/CD</h3>
+
+          <p>
+            Automated CI/CD pipeline using GitHub Actions
+            with Python testing and Docker image build.
+          </p>
+
+          <div class="tags">
+            <span class="tag">GitHub Actions</span>
+            <span class="tag">Docker</span>
+            <span class="tag">Python</span>
+            <span class="tag">CI/CD</span>
+          </div>
+
+        </div>
+
+
+        <div class="project">
+
+          <span class="project-number">02 / DOCKER</span>
+
+          <h3>3-Tier Application</h3>
+
+          <p>
+            Containerized application architecture using
+            frontend, backend, PostgreSQL and Redis.
+          </p>
+
+          <div class="tags">
+            <span class="tag">Docker</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">Redis</span>
+            <span class="tag">React</span>
+          </div>
+
+        </div>
+
+
+        <div class="project">
+
+          <span class="project-number">03 / CLOUD</span>
+
+          <h3>AWS Deployment</h3>
+
+          <p>
+            Deployed applications on AWS EC2 and worked
+            with Linux server administration and networking.
+          </p>
+
+          <div class="tags">
+            <span class="tag">AWS</span>
+            <span class="tag">EC2</span>
+            <span class="tag">Linux</span>
+            <span class="tag">Docker</span>
+          </div>
+
+        </div>
+
+
+        <div class="project">
+
+          <span class="project-number">04 / AUTOMATION</span>
+
+          <h3>Docker Build & Push</h3>
+
+          <p>
+            Automated Docker image building and publishing
+            to Docker Hub using GitHub Actions.
+          </p>
+
+          <div class="tags">
+            <span class="tag">Docker Hub</span>
+            <span class="tag">GitHub Actions</span>
+            <span class="tag">YAML</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- JOURNEY -->
+
+  <section id="journey">
+
+    <div class="container">
+
+      <div class="section-title">
+
+        <h2>My DevOps Journey</h2>
+
+        <p>
+          Learning → Building → Automating
+        </p>
+
+      </div>
+
+      <div class="journey">
+
+        <div class="journey-item">
+
+          <span>PHASE 01</span>
+
+          <h3>Linux & Git</h3>
+
+          <p>
+            Started learning Linux commands, permissions,
+            networking and Git/GitHub.
+          </p>
+
+        </div>
+
+
+        <div class="journey-item">
+
+          <span>PHASE 02</span>
+
+          <h3>Docker</h3>
+
+          <p>
+            Learned containers, images, Dockerfiles,
+            volumes, networks and Docker Compose.
+          </p>
+
+        </div>
+
+
+        <div class="journey-item">
+
+          <span>PHASE 03</span>
+
+          <h3>AWS & Cloud</h3>
+
+          <p>
+            Working with EC2, S3, IAM, VPC and
+            deploying applications on cloud infrastructure.
+          </p>
+
+        </div>
+
+
+        <div class="journey-item">
+
+          <span>PHASE 04</span>
+
+          <h3>CI/CD</h3>
+
+          <p>
+            Building automated pipelines with GitHub Actions
+            and deploying Docker applications.
+          </p>
+
+        </div>
+
+
+        <div class="journey-item">
+
+          <span>PHASE 05</span>
+
+          <h3>Kubernetes & IaC</h3>
+
+          <p>
+            Next focus: Kubernetes, Terraform,
+            Ansible and production-grade DevOps practices.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CONTACT -->
+
+  <section id="contact">
+
+    <div class="container">
+
+      <div class="contact-box">
+
+        <h2>Let's Connect 🚀</h2>
+
+        <p>
+          I'm always interested in learning, building
+          and connecting with other DevOps enthusiasts.
+        </p>
+
+        <div class="socials">
+
+          <a
+            href="https://github.com/Balaji-0999"
+            target="_blank"
+            class="social"
+          >
+            GitHub
+          </a>
+
+          <a
+            href="https://www.linkedin.com/in/bala-ji-3a3b20390/"
+            target="_blank"
+            class="social"
+          >
+            LinkedIn
+          </a>
+
+          <a
+            href="mailto:your-email@example.com"
+            class="social"
+          >
+            Email
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <p>
+      © 2026 <span>Bala Ji</span> • Built with HTML & CSS
+    </p>
+
+  </footer>
+
+
+  <!-- SMALL JAVASCRIPT -->
+
+  <script>
+
+    // Simple page-load animation
+
+    document.body.style.opacity = "0";
+
+    window.addEventListener("load", () => {
+      document.body.style.transition = "opacity 0.8s ease";
+      document.body.style.opacity = "1";
+    });
+
+  </script>
+
 </body>
 </html>
