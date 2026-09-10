@@ -22,6 +22,12 @@ jobs:
               with:
                 python-version: ${{ matrix.python-version }}
 
+            - name: Check files
+              run: |
+                pwd
+                ls -la
+                ls -la requirements.txt
+
             - name: install dependencies
               run: pip install -r requirements.txt
 
