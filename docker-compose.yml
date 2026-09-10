@@ -1,6 +1,7 @@
 services:
  
   web:
+    build: .
     image: ${DOCKERHUB_USERNAME}/github-actions-app
     ports:
       - "80:80"
