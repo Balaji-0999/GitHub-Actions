@@ -1,10 +1,10 @@
 name: Hello
 
 on:
-    push:
-      branches: [main]
-      paths:
-       - '**.html'
+    # push:
+    #   branches: [main]
+      # paths:
+      #  - '**.html'
     workflow_dispatch:
 
 

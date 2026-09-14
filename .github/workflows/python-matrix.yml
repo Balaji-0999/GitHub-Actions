@@ -2,9 +2,7 @@ name: python lint
 
 on:
   workflow_dispatch
-    # push:
-    #     branches: [main]
-
+    
 jobs:
     validate:
         runs-on: ubuntu-latest
@@ -33,3 +31,5 @@ jobs:
 
             - name: run linter
               run: flake8 app.py
+
+          
