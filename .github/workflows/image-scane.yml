@@ -19,7 +19,7 @@ jobs:
                uses: aquasecurity/trivy-action@v0.36.0
                with:
                 image-ref: ${{ vars.DOCKERHUB_USERNAME }}/github-actions-app:${{ github.sha }}
-                severity: 'CRITICAL'
+                severity: 'CRITICAL, HIGH'
                 exit-code: '1'
 
 
