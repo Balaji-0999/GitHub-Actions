@@ -8,8 +8,7 @@ RUN apt-get update && \
 
 COPY . .
 
-RUN python -m pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir --force-reinstall --upgrade "setuptools>=78.1.1" "msgpack>=1.2.1" -r requirements.txt
+RUN pip install  --no-cache-dir -r requirements.txt
 
 EXPOSE 80
 
