@@ -15,4 +15,3 @@ jobs:
 
     Docker-Scan:
         uses: /.github\workflows\docker-lint.yml
-.
