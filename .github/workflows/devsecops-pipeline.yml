@@ -27,4 +27,4 @@ jobs:
         needs: [build] 
         uses: ./.github/workflows/image-scane.yml
         secrets: inherit
-        trivyignore: ${{ github.workspace }}/.trivyignore
+        
