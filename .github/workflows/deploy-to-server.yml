@@ -16,4 +16,4 @@ jobs:
                 password: ${{ secrets.EC2_PASSWORD }}
                 script: |
                   echo "Staring Deployment"
-                  mkdir DevOps
+                  mkdir -p DevOps
