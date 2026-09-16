@@ -8,7 +8,10 @@ jobs:
     deploy:
         runs-on: ubuntu-latest
         steps:
-            - name: SSH to Prod server
+            - name: checkout code
+              uses: actions/checkout@v4
+
+            - name: ssh to prod server & creat app folder
               uses: appleboy/ssh-action@v1
               with:
                 host: ${{ secrets.EC2_SSH_HOST }}
@@ -18,3 +21,30 @@ jobs:
                 script: |
                   echo "Staring Deployment"
                   mkdir -p DevOps
+            
+            - name: copy docker-compose-file
+              uses: appleboy/scp-action@v1
+              with:
+                host: ${{ secrets.EC2_SSH_HOST }}
+                username: ${{ secrets.EC2_USERNAME }}
+                key: ${{ secrets.SSH_PRIVATE_KEY }}
+                source: docker-compose.yml
+                target: ~DevOps/
+
+            - name: ssh to prod server & run the app 
+              uses: appleboy/ssh-action@v1
+              with:
+                host: ${{ secrets.EC2_SSH_HOST }}
+                username: ${{ secrets.EC2_USERNAME }}
+                key: ${{ secrets.SSH_PRIVATE_KEY }}
+                debug: true
+                script: |
+                  echo "Run App"
+                  sudo apt-get update &&sudo apt-get install docker.io docker-compose-v2 -y
+                  sudo usermod -aG docker $USER && newgrp docker 
+                  export DOCKERHUB_USERNAME=${{ vars.DOCKERHUB_USERNAME }}
+                  export DOCKER_TAG=${{ github.event.workflow_run.head_sha }}
+                  echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u  ${{ vars.DOCKERHUB_USERNAME }} --passwpord-stdin
+                  cd ~DevOps && docker compose down && docker compose up -d --build
+
+           
