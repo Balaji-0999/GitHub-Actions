@@ -42,9 +42,9 @@ jobs:
                 debug: true
                 script: |
                   
-                  export DOCKERHUB_USERNAME=${{ vars.DOCKERHUB_USERNAME }}
-                  export DOCKER_TAG=${{ github.event.workflow_run.head_sha }}
-                  echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u  ${{ vars.DOCKERHUB_USERNAME }} --passwpord-stdin
-                  cd ~DevOps && docker compose down && docker compose up -d --build
-
+                 script: |
+                     export DOCKERHUB_USERNAME=${{ vars.DOCKERHUB_USERNAME }}
+                     echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ vars.DOCKERHUB_USERNAME }} --password-stdin
+                     docker pull ${{ vars.DOCKERHUB_USERNAME }}/github-actions-app:latest
+                     cd ~/DevOps && docker compose down && docker compose up -d --build
            
