@@ -20,6 +20,8 @@ jobs:
                 debug: true
                 script: |
                   echo "Staring Deployment"
+                  sudo apt-get update &&sudo apt-get install docker.io docker-compose-v2 -y
+                  sudo usermod -aG docker $USER && newgrp docker 
                   mkdir -p DevOps
             
             - name: copy docker-compose-file
@@ -39,9 +41,7 @@ jobs:
                 key: ${{ secrets.SSH_PRIVATE_KEY }}
                 debug: true
                 script: |
-                  echo "Run App"
-                  sudo apt-get update &&sudo apt-get install docker.io docker-compose-v2 -y
-                  sudo usermod -aG docker $USER && newgrp docker 
+                  
                   export DOCKERHUB_USERNAME=${{ vars.DOCKERHUB_USERNAME }}
                   export DOCKER_TAG=${{ github.event.workflow_run.head_sha }}
                   echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u  ${{ vars.DOCKERHUB_USERNAME }} --passwpord-stdin
