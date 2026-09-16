@@ -14,6 +14,7 @@ jobs:
                 host: ${{ secrets.EC2_SSH_HOST }}
                 username: ${{ secrets.EC2_USERNAME }}
                 password: ${{ secrets.EC2_PASSWORD }}
+                debug: true
                 script: |
                   echo "Staring Deployment"
                   mkdir -p DevOps
