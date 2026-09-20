@@ -1,19 +1,21 @@
-name: Job Outputs Demo
+name: Conditionals Demo
 
-on: push
+on: [push, pull_request]
 
 jobs:
-  set-date:
-    runs-on: ubuntu-latest
-    outputs:
-      date: ${{ steps.get-date.outputs.date }}
+  conditional-job:
+    if: github.event_name == 'push'
+    runs-on:  ubuntu-latest
     steps:
-      - id: get-date
-        run: echo "date=$(date)" >>$GITHUB_OUTPUT
+      - name: Only on main
+        if: github.ref == 'refs/head/main'
+        run: echo "This is main branch"
 
-  read-date:
-    runs-on: ubuntu-latest
-    needs: set-date
-    steps: 
-      - run: |
-          echo "Date from previous job: ${{ needs.set-date.outputs.date }}"
+      - name: This might fail
+        id: risky-step
+        run: exit 1
+        continue-on-error: true
+
+      - name: Run only if previous step failed
+        if: failure()
+        run: echo "Previous step failed, handling it here"
