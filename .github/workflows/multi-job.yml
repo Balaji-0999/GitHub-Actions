@@ -17,5 +17,5 @@ jobs:
         continue-on-error: true
 
       - name: Run only if previous step failed
-        if: failure()
+        if: steps.risky-step.outcome == 'failure'
         run: echo "Previous step failed, handling it here"
