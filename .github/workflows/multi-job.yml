@@ -1,23 +1,26 @@
-name: Multi Job Workflow
+name: Env Vars Demo
 
 on: push
 
+env:
+  APP_NAME: myapp  # Workflow level
+
 jobs:
-  build:
-     runs-on: ubuntu-latest
-     steps:
-       - run: echo "Building The App"
+  show-env:
+    runs-on: ubuntu-latest
+    env:
+      ENVIRONMENT: staging # job level
+    steps:
+      - name: Print all vars
+        env:
+          VERSION: 1.0.0 # step level
+        run: |
+          echo "App: $APP_NAME"
+          echo "Env: $ENVIRONMENT"
+          echo "Version: $VERSION"
 
-  test:
-     runs-on: ubuntu-latest
-     needs: build
-     steps:
-       - run: echo "Running Tests"
-
-  Deploy:
-     runs-on: ubuntu-latest
-     needs: test
-     steps:
-       - run: echo "Deploying"
-     
-  
+      - name: Print Github context
+        run: |
+          echo "Commit SHA: ${{ github.sha }}"
+          echo "Actor: ${{ github.actor }}"
+          
