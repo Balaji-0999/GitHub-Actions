@@ -2,23 +2,23 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-# Create non-root user
 RUN useradd -m appuser
 
-# Copy requirements
 COPY requirements.txt .
 
-# Give appuser permission
 RUN chown -R appuser:appuser /app
 
-# Switch to non-root user
 USER appuser
 
-# Install Python packages as appuser
-RUN pip install --no-cache-dir --user -r requirements.txt
+# Create virtual environment as appuser
+RUN python -m venv /home/appuser/venv
 
+# Use the virtual environment
+ENV PATH="/home/appuser/venv/bin:$PATH"
 
-# Copy application files
+# Install packages as appuser
+RUN pip install --no-cache-dir -r requirements.txt
+
 COPY --chown=appuser:appuser . .
 
 EXPOSE 5000
