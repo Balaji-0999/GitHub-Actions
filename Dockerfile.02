@@ -1,9 +1,16 @@
 FROM python:3.11-slim
 
 WORKDIR /app
-COPY python.py .
+
+RUN useradd -m appuser
+
+COPY equirements.txt .
 
 RUN pip install --no-cache-dir flash
+
+COPY . .
+
+RUN chown -R appuser:appuser /app
 
 EXPOSE 5000
 
