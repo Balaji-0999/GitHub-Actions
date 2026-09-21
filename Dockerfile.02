@@ -4,22 +4,9 @@ WORKDIR /app
 
 RUN useradd -m appuser
 
-COPY requirements.txt .
+COPY . .
 
-RUN chown -R appuser:appuser /app
-
-USER appuser
-
-# Create virtual environment as appuser
-RUN python -m venv /home/appuser/venv
-
-# Use the virtual environment
-ENV PATH="/home/appuser/venv/bin:$PATH"
-
-# Install packages as appuser
-RUN pip install --no-cache-dir -r requirements.txt
-
-COPY --chown=appuser:appuser . .
+RUN pip install --no-cache-dir flash
 
 EXPOSE 5000
 
