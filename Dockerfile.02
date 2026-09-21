@@ -2,17 +2,24 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
+# Create non-root user
 RUN useradd -m appuser
 
+# Copy requirements
 COPY requirements.txt .
 
-RUN pip install --no-cache-dir -r requirements.txt
-
-COPY . .
-
+# Give appuser permission
 RUN chown -R appuser:appuser /app
 
+# Switch to non-root user
 USER appuser
+
+# Install Python packages as appuser
+RUN pip install --no-cache-dir --user -r requirements.txt
+
+
+# Copy application files
+COPY --chown=appuser:appuser . .
 
 EXPOSE 5000
 
