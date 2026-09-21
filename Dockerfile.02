@@ -4,13 +4,15 @@ WORKDIR /app
 
 RUN useradd -m appuser
 
-COPY equirements.txt .
+COPY requirements.txt .
 
-RUN pip install --no-cache-dir flash
+RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
 RUN chown -R appuser:appuser /app
+
+USER appuser
 
 EXPOSE 5000
 
