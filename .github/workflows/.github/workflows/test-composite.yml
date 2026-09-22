@@ -1,0 +1,14 @@
+name: Test Composite Action
+
+on: push
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use composite action
+        uses: ./.github/actions/setup-and-greet
+        with:
+          name: "Bhopal"
+          language: "hi"
